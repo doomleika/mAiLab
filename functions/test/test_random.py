@@ -1,6 +1,7 @@
 from unittest import TestCase
+from unittest.mock import patch
 
-from myrandgen import *
+from ..assignment_2 import *
 
 
 class TestRandomGen(TestCase):
@@ -100,6 +101,7 @@ class TestAverage(TestCase):
         # Assert
         self.assertEqual(expected, avg)
 
+
 class TestStandardDeviation(TestCase):
 
     def test_std(self):
@@ -110,3 +112,20 @@ class TestStandardDeviation(TestCase):
         sd = standard_deviation_of_list(values)
         # Assert
         self.assertEqual(expected, sd)
+
+
+class TestGenerate(TestCase):
+
+    def setUp(self):
+        random_uniform_patcher = patch('random.uniform', spec=True)
+        self.addCleanup(random_uniform_patcher.stop)
+        self.random_uniform_mock = random_uniform_patcher.start()
+
+    def test_generate_10(self):
+        # Setup
+        self.random_uniform_mock.return_value = 00
+        expected = [0 for _ in range(10)]
+        # Assert
+        actual = list_of_random_n(10)
+        # Assert
+        self.assertEqual(expected, actual)
