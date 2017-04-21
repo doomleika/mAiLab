@@ -23,6 +23,5 @@ def main():
 
 
 if '__main__' == __name__:
-
     logging.basicConfig(level=logging.INFO)
     main()
