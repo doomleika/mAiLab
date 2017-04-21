@@ -1,4 +1,7 @@
 # mAiLab
+
 Assignment for mAiLab
 
-This assignment is written using python 3
+## Note
+
+This assignment is written in python 3
